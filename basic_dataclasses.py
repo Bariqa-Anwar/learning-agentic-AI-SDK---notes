@@ -94,3 +94,7 @@ The methods exist in memory after class creation
 They're not in your source file (the decorator adds them dynamically)
 This is all part of Python's metaprogramming capabilities
 The transformation happens exactly once, when Python loads your module'''
+
+# So basically What Are Dataclasses?
+'''Dataclasses are Python's way to quickly create classes that mainly store data. The @dataclass decorator 
+automatically generates special methods like __init__() and __repr__() for you.'''
