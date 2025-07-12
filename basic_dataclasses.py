@@ -1,5 +1,6 @@
 # from dataclasses import dataclass # built in python function, need to import at the time of usage(in line:5, 25... )
 # from dataclasses import fields 
+
 '''fields are blueprints you define in class
 e.g: 
 @dataclass
@@ -98,3 +99,26 @@ The transformation happens exactly once, when Python loads your module'''
 # So basically What Are Dataclasses?
 '''Dataclasses are Python's way to quickly create classes that mainly store data. The @dataclass decorator 
 automatically generates special methods like __init__() and __repr__() for you.'''
+
+# Why do we need dataclasses?
+'''.1. Dataclasses (introduced in Python 3.7) provide several advantages that reduce boilerplate code and 
+improve readability.
+ .2. In regular classes we often write repetitive code lke __init__, __repr__ and __eq__, but 
+ @dataclass auto-generates these methods, saving time and reducing errors.
+ .3. Dataclass encourages (and requires) type hints, improving code clarity.
+ .4. Easily set default values.
+ .5. Make the class immutable 
+ e.g:
+ @dataclass(frozen=True)    # this makes it immutable
+class Point:
+    x: float = 0.0
+    y: float = 0.0
+    
+The Key is:
+Dataclasses are not a replacement for OOP but a convenient tool for data-heavy classes where boilerplate 
+reduction, readability, and maintainability matter. They are especially useful for:
+✅ DTOs (Data Transfer Objects)
+✅ Configurations
+✅ Simple structured data containers
+
+For more complex logic, stick with traditional classes.'''

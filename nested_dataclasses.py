@@ -18,6 +18,7 @@ Optional → Indicates that a value can be either of a given type or None.
 '''Its a static type checker,analyzes the code without running it to check type related errors before execution'''
 # e.g: 
 '''Catches mismatches like passing a str to a function expecting an int.'''
+
 # How to install?
 '''pip install mypy
 To run use:
@@ -46,10 +47,30 @@ class Employee:
 
 # Advantages:
 '''Modular: Reuse Address/Contact in other classes.
-
 Clear: Logical grouping (e.g., employee.address.city).
-
 Maintainable: Change Address once, updates apply everywhere.'''
 
 # How to Spot a Nested Dataclass
 '''A dataclass field has another dataclass as its type'''
+
+# Basically this is a nested dataclass:
+'''@dataclass
+class Employee:
+    name: str
+    age: int
+    city: str
+    country: str
+    salary: int
+@dataclass
+class New_Employee:
+    personal_info: Employee
+    qualification: str
+
+emp = Employee("John", 45 ,"Paris", "France", 3000000)
+
+new_emp = New_Employee(emp, "PhD")
+print(new_emp)'''
+# output:
+'''
+New_Employee(personal_info=Employee(name='John', age=45, city='Paris', country='France', salary=3000000), 
+qualification='PhD')  if you need multiline lookingg good output then we have to rewrite __repr__ in code'''
