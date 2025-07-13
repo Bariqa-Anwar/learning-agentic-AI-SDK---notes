@@ -23,7 +23,7 @@ print(child)  # Works without errors due to alt inheritance setup
 ..Key point is we have to asign false to repr and eq methods where and when needed for this, so that by default 
 it will not add these methods
 '''
-# what is @property? what does i do?
+# what is @property? what it does?
 '''
 In Python, @property is a built-in decorator that lets you turn a method into a read-only attribute, while 
 also allowing you to add logic (like validation or calculations) when accessing or modifying that attribute.
@@ -60,13 +60,11 @@ class Person:
             (today.month, today.day) < (self.birth_date.month, self.birth_date.day)
         )
         
-
 # Child classes can add optional fields
 @dataclass
 class PersonWithEmail(Person):
     """Person with optional email field."""
     email: Optional[str] = None
-
 
 @dataclass
 class Student:
@@ -96,7 +94,6 @@ class Student:
         """Check if the student qualifies for honors."""
         return self.gpa >= 3.5
 
-
 # APPROACH 2: Composition pattern
 @dataclass
 class PersonInfo:
@@ -112,7 +109,6 @@ class PersonInfo:
         return today.year - self.birth_date.year - (
             (today.month, today.day) < (self.birth_date.month, self.birth_date.day)
         )
-
 
 @dataclass
 class TeachingStaff:
@@ -141,7 +137,6 @@ class TeachingStaff:
         if course not in self.courses_taught:
             self.courses_taught.append(course)
 
-
 # APPROACH 3: Using composition with delegation
 @dataclass
 class BaseWithDefaults:
@@ -149,7 +144,6 @@ class BaseWithDefaults:
     name: str
     # Optional field with default
     description: Optional[str] = None
-
 
 @dataclass
 class CompositionBased:
@@ -175,7 +169,6 @@ class CompositionBased:
         if not self.required_id.strip():
             raise ValueError("required_id cannot be empty")
 
-
 def demo_no_inheritance():
     """Demonstrate the standalone approach."""
     student = Student(
@@ -193,7 +186,6 @@ def demo_no_inheritance():
     student.add_course("Algorithms")
     print(f"Student courses: {student.courses}")
     print(f"Is honors student? {student.is_honors()}")
-
 
 def demo_composition():
     """Demonstrate the composition approach."""
@@ -219,7 +211,6 @@ def demo_composition():
     print(f"Email: {instructor.email}")
     instructor.add_course("Statistics")
     print(f"Courses taught: {instructor.courses_taught}")
-
 
 def demo_composition_delegation():
     """Demonstrate the composition with delegation approach."""

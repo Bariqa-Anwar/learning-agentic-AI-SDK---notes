@@ -13,7 +13,7 @@ class Person:
     name: str
     age: int
     # Fields with defaults must come after required fields
-    email: Optional[str] = None
+    email: Optional[str] = None   # = None sets the default value of email to None if no value is provided
 
 
 @dataclass
@@ -37,14 +37,14 @@ def main():
     # Print debug info
     print("Creating a person...")
     try:
-        person = Person(name="John Doe", age=30, email="john@example.com")
+        person = Person(name="John Doe", age=30, email="john@example.com") 
         print(f"Person created: {person}")
     except Exception as e:
         print(f"Error creating person: {e}")
     
     print("\nCreating a student...")
     try:
-        student = Student(
+        student = Student(        
             name="Alice Johnson",
             age=20,
             student_id="S12345",
@@ -62,3 +62,43 @@ if __name__ == "__main__":
     print("=== SIMPLIFIED DATACLASS EXAMPLE ===")
     main()
     print("\nProgram completed successfully") 
+
+# What is generics?
+
+'''
+Without Generics
+You need separate boxes for each type:
+
+class IntBox:
+    def __init__(self, item: int):
+        self.item = item
+
+class StrBox:
+    def __init__(self, item: str):
+        self.item = item
+Problem: You'd need a new class for every type!
+
+With Generics ✅
+One box works for all types:
+
+from typing import Generic, TypeVar
+
+T = TypeVar('T')  # T = any type (placeholder)
+
+class MagicBox(Generic[T]):  # MagicBox can hold ANY type T
+    def __init__(self, item: T):
+        self.item = item
+
+# Usage:
+apple_box = MagicBox("🍎")   # MagicBox[str]
+orange_box = MagicBox("🍊")  # MagicBox[str]
+number_box = MagicBox(42)    # MagicBox[int]
+MagicBox[str] = holds a string (like "🍎").
+
+MagicBox[int] = holds an integer (like 42).
+
+2. Why Use Generics?
+Reusability: Write one class that works for any type.
+
+Type Safety: Python (or tools like mypy) will catch errors:
+'''
